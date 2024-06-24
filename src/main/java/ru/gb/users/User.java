@@ -1,12 +1,24 @@
 package ru.gb.users;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "USERS")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "EMAIL")
     private String email;
 
-    public User(Long id, String name, String email) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
     }

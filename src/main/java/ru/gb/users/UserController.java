@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping
-    public String ListUsers(Model model){
-        model.addAttribute("users", userService.getAllUsers());
+    public String listUsers(Model model) {
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
         return "users";
     }
     @GetMapping("/{id}")
